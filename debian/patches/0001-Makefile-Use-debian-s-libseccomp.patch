@@ -1,0 +1,29 @@
+From: Detlev Casanova <detlev.casanova@collabora.com>
+Date: Wed, 21 Dec 2022 14:30:34 -0500
+Subject: Makefile: Use debian's libseccomp
+
+---
+ Makefile | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index ddedc10..eeeb0b6 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,4 +1,5 @@
+-COMMON_CFLAGS := -fPIC -Ilibseccomp/include
++COMMON_CFLAGS := -fPIC -I/usr/include
++SECCOMP_LIB := /usr/lib/aarch64-linux-gnu/libseccomp.a
+ 
+ all: libsandbox.so sandboxify
+ 
+@@ -9,7 +10,7 @@ all: libsandbox.so sandboxify
+ # static libseccomp to avoid potential clash with the libseccomp the
+ # sandboxed process might be using
+ libsandbox.so: sandbox.o preload.o
+-	$(CC) -shared -Wl,--version-script=libsandbox.version -o $@ $^ libseccomp/src/.libs/libseccomp.a
++	$(CC) -shared -Wl,--version-script=libsandbox.version -o $@ $^ $(SECCOMP_LIB)
+ 
+ sandboxify: sandboxify.o sandbox.o
+-	$(CC) -o $@ $^ libseccomp/src/.libs/libseccomp.a
++	$(CC) -o $@ $^ $(SECCOMP_LIB)

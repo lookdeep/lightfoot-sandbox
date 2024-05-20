@@ -1,0 +1,11 @@
+Package: libsandbox
+Version: 1.0-1
+Architecture: arm64
+Maintainer: Detlev Casanova <detlev.casanova@collabora.com>
+Installed-Size: 140
+Depends: libc6:arm64 (>= 2.36)
+Section: misc
+Priority: optional
+Description: Provides a simple way to enable basic
+ seccomp system call filtering in any application (even proprietary one)
+ via environment variables

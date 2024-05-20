@@ -1,0 +1,13 @@
+Source: libsandbox
+Maintainer: Detlev Casanova <detlev.casanova@collabora.com>
+Section: misc
+Priority: optional
+Standards-Version: 4.6.2
+Build-Depends: debhelper (>= 13), libseccomp-dev
+
+Package: libsandbox
+Architecture: arm64
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Provides a simple way to enable basic
+ seccomp system call filtering in any application (even proprietary one)
+ via environment variables
